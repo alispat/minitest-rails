@@ -18,19 +18,16 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - '2.7'
-          - '3.0'
           - '3.1'
           - '3.2'
           - '3.3'
         gemfile:
-          - gemfiles/rails-7.1.0.gemfile
-          - gemfiles/rails-7.2.0.beta2.gemfile
+          - gemfiles/rails-7.2.0.gemfile
+          - gemfiles/rails-8.0.0.gemfile
         exclude:
-          - ruby: '2.7'
-            gemfile: gemfiles/rails-7.2.0.beta2.gemfile
-          - ruby: '3.0'
-            gemfile: gemfiles/rails-7.2.0.beta2.gemfile
+          - ruby: '3.1'
+            gemfile: 'gemfiles/rails-8.0.0.gemfile'
+
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
 
@@ -62,7 +59,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.2
           bundler-cache: true
 
       - name: rubocop
